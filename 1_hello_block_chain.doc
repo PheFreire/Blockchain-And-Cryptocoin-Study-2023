@@ -1,0 +1,56 @@
+(Como funciona o BlockChain)
+
+
+O blockchain é um método de criptografia criado a partir de uma rede de blocos ligados entre si como uma corrente
+Cada bloco é completamente único e armazena 4 tipos de informações essenciais:
+- Algum tipo de dado
+- Um Hash de identificação
+- O hash do bloco anterior
+- Numero Proof of work
+O hash identificador de cada bloco é um id de texto completamente único gerado a partir dos dados que o bloco está armazenando em conjunto do hash do bloco anterior e o numero proof-of-work, onde seguindo a técnica de caminho único dos hashes, uma vez que um hash é gerado ele não pode retornar ao estado inicial dele, dessa forma quem possui o hash identificador de um bloco não consegue convertê-lo para as informações que foram usadas para gerá-lo, mas caso alguém modifique os dados internos de um bloco, ao gerar o hash do mesmo,
+Este será modificado, e o bloco da frente que para gerar o próprio hash utiliza o hash do bloco anterior, também sairia diferente. Sendo assim, após um bloco ser criado seus dados não podem ser modificados pois caso isso acontecesse todos os outros blocos da rede teriam seu hash modificados e assim perderiam sua autenticidade. Quando a rede blockchain detecta um bloco invalido para a cadeia, este rejeita qualquer ação realizada com este bloco, até que o mesmo retorne a ser válido.
+Contudo hoje em dia os computadores tem um poder de processamento muito rapido, sendo assim seria facil computar todos os hashs da rede baseando-se no hash adulterado e assim tornar o hash adulterado valido novamente, para que isso não aconteça o blockchain possui 2 outros metodos de segurança, sendo:
+- Cada bloco da rede possui um numero especial chamado proof-of-work, este é um numero especial encontrado usando metodos matematicos complexos e computacionalmente pesados, que garantem um padrão especial no hash gerado, este numero funciona como um salt para a geração do hash. Devido ao custo computacional para a geração desse numero, ele garante um delay obrigatorio de pelo menos 10 min para a geração/modificação de blocos, assim garantindo um nivel de segurança contra o uso de alto poder de processamento para burlar a corrente de blockchains  
+- A rede do blockchain funciona através de um protocolo chamado P2P Network (Peer-to-peer), esse protocolo consiste no fato de que qualquer pessoa pode participar da rede blockchain e quando isso acontece, essa pessoa recebe uma copia completa de toda corrente blockchain, ao realizar alguma operação com algum bloco da corrente, podendo esta ação ser: criar um novo bloco, deletar um bloco ou até mesmo tentar adulterar um bloco, essa ação para se tornar efetiva deve concentir com a corrente de blockchain existente no servidor principal e concentir também com a copia da corrente de blockchain de absolutamente todos os outros usuarios simultaneamente, quando ocorre esta validação, a ação realizada na corrente de blockchain do usuario entra em vigor no servidor principal, sendo assim se torna efetiva. Dessa forma garantimos que um usuario não consiga modificar o hash de seu bloco forjando alguma alteração de dados, pois mesmo que ele modifique toda a sua corrente de blockchain para que seu hash adulterado seja valido, quando esta alteração for comparada com a corrente de blockchain dos outros usuarios ou do server principal do blockchain, a alteração não será autenticada portanto estas alterações serão invalidas e não entrarão em vigor no server principal   
+
+
+(Cryptocoins X BlockChain)
+
+Cryptocoins são moedas nas quais suas transações são realizadas em uma rede mantida por muitas camadas de criptografia, esta rede também chamada de blockchain, mantém a segurança e funcionamento da moeda.
+Algumas características do blockchain são:
+- Só podem existir um número limitado de blocos dentro de uma rede blockchain, sendo estes blocos muito difíceis de serem criados, dessa forma em um sistema de criptomoedas onde cada moeda representa um bloco, como o etherium ou bitcoin, temos um número limitados de cryptocoins que podem existir dentro desse sistema, assim resolvemos problemas como o da inflação de cryptocoins.
+
+
+(Smart contracts)
+
+Smart contracts são contratos nas quais os combinados contratuais são escritos em código no formato
+de uma lista de comandos auto-executáveis, ou seja que não precisam de terceiros para serem executados
+
+
+(Ethereum x Smart Contracts X BlockChain)
+
+Etherium é um protocolo de criptomoedas, que além de implementar a rede blockchain, também implementa smart contracts, disponibilizando para seus usuarios ferramentas para a criação de smart contracts e algoritimos para associá los a redes de blockchain.
+
+
+(Blockchain Oracles)
+
+Para que smart contracts funcionem fora do algoritmo interno do protocolo que eles estejam rodando ou seja,
+para que os smart contracts consigam interagir com o mundo real e fazer alguma diferença ele deve ter acesso
+a dados de fora de seu bloco, ou seja devemos conseguir levar dados para dentro de informações mantidas em blocos da rede blockchain. Para conseguirmos fazer isso, usamos uma classe de ferramentas chamadas, Blockchain Oracles
+
+(UTXO)
+
+Como já vimos previamente todo bloco de uma rede blockchain armazena dados dentro de sí, no caso de uma cryptocoin, esse dados são os registros referentes a tranzações envolvendo aquele bloco.
+
+O UTXO é o nome da estrutura que armazena o registro de uma transação. 
+Em um bloco de criptomoeda o dado que ele armazena é o conjunto de UTXOs, ou seja todo o registro de tranzações referentes aquele bloco.
+
+Toda transação em um sistema de criptocoins são computadas como estruturas UTXO, sendo que as entradas de uma transação são UTXOs não gastos de transações anteriores e quando você gasta uma UTXO em uma transação, ela deixa de existir como UTXO e é consumida como entrada na nova transação (que também será um estrutura UTXO que armazena os dados daquela transação).
+
+Em uma UTXO além dos dados de registro da transação sempre teremos um script contendo regras minimas que devem ser seguidas para que a transação seja realizada (scriptPubKey). Por padrão temos diversos protocolos para a realizaçaõ de transações predefinido.
+
+(P2SH)
+
+O p2sh de maneira simplificada é um protocolo  realizar transações, onde dentro de sí amazena um smart contract redeem script que quando tem suas condições cumpridas manipula as estruturas UTXO de um bloco para realizar uma tranzação
+
+redem scripts
